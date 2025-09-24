@@ -1,4 +1,4 @@
-# 🛫 AviãoVM – Definição da Linguagem (EBNF)
+# 🛫 CabeçaCadeado Martin – Definição da Linguagem (EBNF)
 
 ## 🎯 Objetivo
 A **AviãoVM** é uma linguagem de programação de alto nível projetada para interagir com uma máquina virtual que simula o funcionamento básico de um avião.  
@@ -73,7 +73,7 @@ digit           = "0"…"9" ;
 
 ---
 
-## 💻 Exemplo de Programa em AviãoVM
+## 💻 Exemplo de Programa em CabeçaCadeado Martin (CCM)
 
 ```avm
 inteiro x;
