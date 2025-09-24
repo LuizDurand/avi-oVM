@@ -1,7 +1,7 @@
 # 🛫 CabeçaCadeado Martin – Definição da Linguagem (EBNF)
 
 ## 🎯 Objetivo
-A **AviãoVM** é uma linguagem de programação de alto nível projetada para interagir com uma máquina virtual que simula o funcionamento básico de um avião.  
+A **CabeçaCadeado Martin** é uma linguagem de programação de alto nível projetada para interagir com uma máquina virtual que simula o funcionamento básico de um avião.  
 A linguagem possui variáveis, condicionais, loops e instruções específicas para controlar o voo, como **decolar, pousar, subir, descer e acelerar**.  
 
 O compilador dessa linguagem terá como destino um Assembly simplificado que manipula registradores da VM (`ALTITUDE`, `VELOCIDADE`) e sensores (`COMBUSTIVEL`, `CLIMA`).  
