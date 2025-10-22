@@ -158,7 +158,7 @@ typedef enum yysymbol_kind_t yysymbol_kind_t;
   #include <string.h>
   int yylex(YYSTYPE* yylval_param, void* scanner);
   void yyerror(void* scanner, const char* msg);
-  extern int yylineno;
+  int yyget_lineno(void* scanner);
 
 #line 164 "parser.tab.c"
 
@@ -519,13 +519,13 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_uint8 yyrline[] =
+static const yytype_int8 yyrline[] =
 {
-       0,    62,    62,    66,    67,    71,    72,    76,    80,    81,
-      82,    83,    84,    85,    89,    93,    94,    95,    96,    97,
-      98,    99,   103,   104,   108,   112,   116,   120,   121,   126,
-     127,   128,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,   141,   142,   143,   144
+       0,    46,    46,    50,    51,    55,    56,    60,    64,    65,
+      66,    67,    68,    69,    73,    77,    78,    79,    80,    81,
+      82,    83,    87,    88,    92,    96,   100,   104,   105,   109,
+     110,   111,   112,   113,   114,   115,   116,   117,   118,   119,
+     120,   124,   125,   126,   127
 };
 #endif
 
@@ -1637,62 +1637,8 @@ yyreduce:
     int yychar_backup = yychar;
     switch (yyn)
       {
-  case 7: /* declaration: T_INTEIRO T_IDENT ';'  */
-#line 76 "parser.y"
-                                               { /* inteiro x; */ }
-#line 1644 "parser.tab.c"
-    break;
 
-  case 14: /* assign: T_IDENT T_ASSIGN expression ';'  */
-#line 89 "parser.y"
-                                               { /* x := expr; */ }
-#line 1650 "parser.tab.c"
-    break;
-
-  case 15: /* action: T_DECOLAR '(' ')' ';'  */
-#line 93 "parser.y"
-                                               { /* decolar(); */ }
-#line 1656 "parser.tab.c"
-    break;
-
-  case 16: /* action: T_POUSAR '(' ')' ';'  */
-#line 94 "parser.y"
-                                               { /* pousar();  */ }
-#line 1662 "parser.tab.c"
-    break;
-
-  case 17: /* action: T_FREAR '(' ')' ';'  */
-#line 95 "parser.y"
-                                               { /* frear();   */ }
-#line 1668 "parser.tab.c"
-    break;
-
-  case 18: /* action: T_ACELERAR '(' T_NUMBER ')' ';'  */
-#line 96 "parser.y"
-                                               { /* acelerar(10); */ }
-#line 1674 "parser.tab.c"
-    break;
-
-  case 19: /* action: T_SUBIR '(' T_NUMBER ')' ';'  */
-#line 97 "parser.y"
-                                               { /* subir(1000);  */ }
-#line 1680 "parser.tab.c"
-    break;
-
-  case 20: /* action: T_DESCER '(' T_NUMBER ')' ';'  */
-#line 98 "parser.y"
-                                               { /* descer(500);  */ }
-#line 1686 "parser.tab.c"
-    break;
-
-  case 21: /* action: T_GIRAR '(' T_DIRECTION ')' ';'  */
-#line 99 "parser.y"
-                                               { /* girar("esquerda"); */ }
-#line 1692 "parser.tab.c"
-    break;
-
-
-#line 1696 "parser.tab.c"
+#line 1642 "parser.tab.c"
 
         default: break;
       }
@@ -1927,9 +1873,9 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 147 "parser.y"
+#line 130 "parser.y"
 
 
 void yyerror(void* scanner, const char* msg) {
-  fprintf(stderr, "Erro sintático: %s na linha %d\n", msg, yylineno);
+  fprintf(stderr, "Erro sintático: %s na linha %d\n", msg, yyget_lineno(scanner));
 }

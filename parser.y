@@ -12,48 +12,32 @@
   #include <string.h>
   int yylex(YYSTYPE* yylval_param, void* scanner);
   void yyerror(void* scanner, const char* msg);
-  extern int yylineno;
+  int yyget_lineno(void* scanner);
 }
 
-/* ====== TIPOS DE VALOR ====== */
-/* Use APENAS %union (removido %define api.value.type) */
 %union {
   long long ival;
   char*     sval;
 }
 
-/* ====== TOKENS ====== */
-/* Palavras-chave de declaração/controle */
 %token T_INTEIRO
 %token T_SE T_ENTAO T_SENAO
 %token T_ENQUANTO T_FACA
-
-/* IO */
 %token T_ESCREVER
-
-/* Ações */
 %token T_DECOLAR T_POUSAR T_ACELERAR T_FREAR T_SUBIR T_DESCER T_GIRAR
-
-/* Sensores */
 %token T_COMBUSTIVEL T_CLIMA T_ALTITUDE T_VELOCIDADE
-
-/* Direção "esquerda"/"direita" (string restrita) */
 %token <sval> T_DIRECTION
-
-/* Básicos */
 %token <sval> T_IDENT
 %token <ival> T_NUMBER
 %token T_ASSIGN
 %token T_EQEQ
 %token T_ERROR
 
-/* Precedências (expressões) */
 %left '>' '<' T_EQEQ
 %left '+' '-'
 %left '*' '/'
-%precedence UMINUS   /* só precedência, sem associatividade */
+%precedence UMINUS
 
-/* scanner reentrante */
 %param { void* scanner }
 
 %%
@@ -73,7 +57,7 @@ item
   ;
 
 declaration
-  : T_INTEIRO T_IDENT ';'                      { /* inteiro x; */ }
+  : T_INTEIRO T_IDENT ';'
   ;
 
 statement
@@ -86,17 +70,17 @@ statement
   ;
 
 assign
-  : T_IDENT T_ASSIGN expression ';'            { /* x := expr; */ }
+  : T_IDENT T_ASSIGN expression ';'
   ;
 
 action
-  : T_DECOLAR '(' ')' ';'                      { /* decolar(); */ }
-  | T_POUSAR  '(' ')' ';'                      { /* pousar();  */ }
-  | T_FREAR   '(' ')' ';'                      { /* frear();   */ }
-  | T_ACELERAR '(' T_NUMBER ')' ';'            { /* acelerar(10); */ }
-  | T_SUBIR    '(' T_NUMBER ')' ';'            { /* subir(1000);  */ }
-  | T_DESCER   '(' T_NUMBER ')' ';'            { /* descer(500);  */ }
-  | T_GIRAR    '(' T_DIRECTION ')' ';'         { /* girar("esquerda"); */ }
+  : T_DECOLAR '(' ')' ';'
+  | T_POUSAR  '(' ')' ';'
+  | T_FREAR   '(' ')' ';'
+  | T_ACELERAR '(' T_NUMBER ')' ';'
+  | T_SUBIR    '(' T_NUMBER ')' ';'
+  | T_DESCER   '(' T_NUMBER ')' ';'
+  | T_GIRAR    '(' T_DIRECTION ')' ';'
   ;
 
 conditional
@@ -121,7 +105,6 @@ statements_opt
   | statements_opt statement
   ;
 
-/* ===== EXPRESSÕES ===== */
 expression
   : expression '+' expression
   | expression '-' expression
@@ -147,5 +130,5 @@ sensor
 %%
 
 void yyerror(void* scanner, const char* msg) {
-  fprintf(stderr, "Erro sintático: %s na linha %d\n", msg, yylineno);
+  fprintf(stderr, "Erro sintático: %s na linha %d\n", msg, yyget_lineno(scanner));
 }
