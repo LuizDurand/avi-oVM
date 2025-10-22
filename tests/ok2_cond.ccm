@@ -1,0 +1,8 @@
+inteiro a;
+a := 10;
+se a > 5 entao {
+    girar("esquerda");
+} senao {
+    frear();
+}
+pousar();

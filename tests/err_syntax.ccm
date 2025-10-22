@@ -1,0 +1,3 @@
+inteiro x
+x := 2
+decolar( ); // ok sintaticamente, mas faltam ';' acima

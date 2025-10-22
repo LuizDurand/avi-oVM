@@ -1,0 +1,4 @@
+inteiro x;
+x := 1;
+girar("norte"); // inválido: direção deve ser "esquerda" ou "direita"
+@

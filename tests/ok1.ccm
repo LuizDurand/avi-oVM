@@ -1,0 +1,13 @@
+inteiro x;
+x := 2;
+
+decolar();
+enquanto COMBUSTIVEL > 0 faca {
+    acelerar(15);
+    subir(1000);
+    x := x - 1;
+    se x == 0 entao {
+        pousar();
+    }
+}
+escrever(ALTITUDE);
